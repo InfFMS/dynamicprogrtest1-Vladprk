@@ -6,4 +6,17 @@ F(n) = n - 7 + F(n - 21), если n > 10
 
 Формат вывода: программа должна печатать только одно число - ответ на задачу.
 """
-print(17274)
+import sys
+sys.setrecursionlimit(1000000)
+mas = [-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+for i in range(200000):
+    mas.append(0)
+def fun(n):
+    if n <= 10:
+        return n
+    else:
+        if mas[n+10] == 0:
+            mas[n+10] = n - 7 + fun(n-21)
+        return mas[n + 10]
+
+print((fun(185734) - fun(185650))//fun(40))
